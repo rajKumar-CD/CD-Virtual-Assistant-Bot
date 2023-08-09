@@ -12,7 +12,6 @@ def send_email():
 
     load_dotenv()
     
-
     data = request.form
     firstName = data.get('firstName')
     lastName = data.get('lastName')
@@ -67,7 +66,7 @@ def send_email():
         user_body += f"We are delighted that you have taken the time to explore our company website. Your interest in our services is greatly appreciated. Our dedicated sales team has been notified of your visit and they will reach out to you shortly to discuss how Cloud Destinations can assist you with your specific needs.<br><br>"
         user_body += f"Once again, thank you for reaching Cloud Destinations. We look forward to the opportunity of working with you and meeting your requirements.<br><br>"
         user_body += f"Best regards,<br>"
-        user_body += f"CD Virtual Bot"
+        user_body += f"CD Virtual Assistant"
         
         user_msg.attach(MIMEText(user_body, 'html'))
         user_server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -76,13 +75,11 @@ def send_email():
         user_text = user_msg.as_string()
         user_server.sendmail(senderEmail, email, user_text)
         user_server.quit()
-
-        print("\nEmails sent successfully")
         return 'Emails sent successfully'
     except Exception as e:
         print("Exception: %s %s" % (type(e), str(e.args)))
         raise SystemExit
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)
 
