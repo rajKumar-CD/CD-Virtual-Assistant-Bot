@@ -7,14 +7,14 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-@app.route('/send_email', methods=['POST'])
+@app.route('/chatbot_api/send_email', methods=['POST'])
 def send_email():
 
     load_dotenv()
     
     data = request.form
     firstName = data.get('firstName')
-    lastName = data.get('lastName')
+    lastName = data.get('lastName') 
     email = data.get('email')
     userActions = data.get('userActions')
     
@@ -22,11 +22,8 @@ def send_email():
     sendPassword = os.getenv('PASSWORD')
     receiverEmail = 'rajkumars@clouddestinations.com' 
 
-    # senderEmail = 'virtualassistant@clouddestinations.com'  
-    # sendPassword = 'wwltgsjpellrykdf'
-
     try:
-        # Send email to HR
+        # Send email to sales
         hr_msg = MIMEMultipart()
         hr_msg['From'] = senderEmail
         hr_msg['To'] = receiverEmail
@@ -47,6 +44,7 @@ def send_email():
         hr_body += f"Thank you for your attention to this matter.<br><br>"
         hr_body += f"Best regards,<br>"
         hr_body += f" CD Virtual Assistant"
+
 
         hr_msg.attach(MIMEText(hr_body, 'html'))
         hr_server = smtplib.SMTP('smtp.gmail.com', 587)
