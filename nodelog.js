@@ -5,19 +5,15 @@ const fs = require('fs');
 const { connect } = require('http2');
 var cors = require('cors')
 
-app.use(cors())
-
-// parse application/x-www-form-urlencoded
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
 app.use(bodyParser.json())
 
 app.get('/readFile', function (req, res) {
   res.send(readFile())
 })
 
-app.post('/updateFile', (req,res) => {
+app.post('/chatbot_api/updateFile', (req,res) => {
     var body = req.body
     var content = body.content;
     writeFile(content);
@@ -51,4 +47,6 @@ function getCurrentDate(){
     var date = today.getFullYear()+'_'+(today.getMonth()+1)+'_'+today.getDate();
     return date
 }
-app.listen(3001)
+app.listen(3000, '0.0.0.0', () => {
+    console.log('Server is running on http://0.0.0.0:3000');
+});
