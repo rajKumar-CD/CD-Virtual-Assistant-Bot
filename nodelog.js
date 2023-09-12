@@ -47,6 +47,6 @@ function getCurrentDate(){
     var date = today.getFullYear()+'_'+(today.getMonth()+1)+'_'+today.getDate();
     return date
 }
-app.listen(3000, '0.0.0.0', () => {
-    console.log('Server is running on http://0.0.0.0:3000');
+app.listen(3001, '0.0.0.0', () => {
+    console.log('Server is running on http://0.0.0.0:3001');
 });
